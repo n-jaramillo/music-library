@@ -1,8 +1,9 @@
 function SearchBar(props) {
     return (
         <form>
-            <input type="text" placeholder="Enter a search term here" onChange={(e) => props.handleSearch(e, e.target.value.toUpperCase())} onSubmit={(e) => props.handleSearch(e, '')} />
-            <button type="submit">Reset</button>
+            <input type="text" placeholder="enter search term here" onChange={(e) => { props.handleSearch(e, (e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1))) }} onSubmit={(e) => props.handleSearch(e, '')} />
+            <br />
+            <button type="submit">reset</button>
         </form>
     )
 }
