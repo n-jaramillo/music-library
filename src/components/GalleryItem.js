@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 function GalleryItem(props) {
     let [view, setView] = useState(false)
@@ -22,14 +23,14 @@ function GalleryItem(props) {
                 <img src={props.item.artworkUrl100} alt={props.item.collectionName} style={{ 'borderRadius': '3px', 'margin': '0 0 10px' }} />
                 <h2 style={{ 'fontVariant': 'small-caps', 'margin': '0 0 10px' }}>{props.item.trackName}</h2>
                 <h3 style={{ 'margin': '0 0 5px' }}>
-                    <a href={`/artist/${props.item.collectionId}`}>
+                    <Link to={`/artist/${props.item.collectionId}`}>
                         {props.item.artistName}
-                    </a>
+                    </Link>
                 </h3>
                 <h3 style={{ 'margin': '0 0 -5px' }}>
-                    <a href={`/album/${props.item.collectionId}`}>
+                    <Link to={`/album/${props.item.collectionId}`}>
                         {props.item.collectionName}
-                    </a>
+                    </Link>
                 </h3>
                 <h4>{props.item.primaryGenreName}<br />{release}</h4>
             </div>
