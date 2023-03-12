@@ -43,10 +43,18 @@ function App() {
       <h1>
         {message}
       </h1>
-      <SearchBar handleSearch={handleSearch} />
-      <Gallery data={data} />
-      <AlbumView />
-      <ArtistView />
+      <Router>
+        <Routes>
+          <Route path="/" element={
+            <Fragment>
+              <SearchBar handleSearch={handleSearch} />
+              <Gallery data={data} />
+            </Fragment>
+          } />
+          <Route path="/album/:id" element={<AlbumView />} />
+          <Route path="/artist/:id" element={<ArtistView />} />
+        </Routes>
+      </Router >
     </div >
   );
 }
