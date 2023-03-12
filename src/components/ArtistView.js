@@ -6,7 +6,7 @@ function ArtistView() {
     const [artistData, setArtistData] = useState([])
 
     return (
-        <div>
+        <div style={{color: "white"}}>
             <h2>The id passed was: {id}</h2>
             <p>Artist Data Goes Here!</p>
         </div>
