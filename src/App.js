@@ -13,7 +13,7 @@ function App() {
 
   const API_URL = 'https://itunes.apple.com/search?term='
 
-  const entity = '&kind=music'
+  const entity = '&media=music'
 
   useEffect(() => {
     if (search) {
