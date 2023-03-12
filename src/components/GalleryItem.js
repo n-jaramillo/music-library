@@ -21,7 +21,16 @@ function GalleryItem(props) {
             <div className='detailed'>
                 <img src={props.item.artworkUrl100} alt={props.item.collectionName} style={{ 'borderRadius': '3px', 'margin': '0 0 10px' }} />
                 <h2 style={{ 'fontVariant': 'small-caps', 'margin': '0 0 10px' }}>{props.item.trackName}</h2>
-                <h3 style={{ 'margin': '0 0 -5px' }}>{props.item.collectionName}</h3>
+                <h3 style={{ 'margin': '0 0 5px' }}>
+                    <a href={`/artist/${props.item.collectionId}`}>
+                        {props.item.artistName}
+                    </a>
+                </h3>
+                <h3 style={{ 'margin': '0 0 -5px' }}>
+                    <a href={`/album/${props.item.collectionId}`}>
+                        {props.item.collectionName}
+                    </a>
+                </h3>
                 <h4>{props.item.primaryGenreName}<br />{release}</h4>
             </div>
         )
