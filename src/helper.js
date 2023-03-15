@@ -1,9 +1,16 @@
 const API_URL = `https://itunes.apple.com/search?term=`
-const entity = '&kind=music'
+const entity = '&media=music'
 const fetchSearch = async (searchTerm) => {
-    const response = await fetch(API_URL + searchTerm + entity)
-    const resData = await response.json()
-    return resData.results
+    try {
+        const response = await fetch(API_URL + searchTerm + entity)
+        const resData = await response.json()
+        console.log(response)
+        console.log(resData)
+        return resData.results
+    } catch (err) {
+        console.log(err)
+        return err
+    }
 }
 
 const wrapPromise = (promise) => {
