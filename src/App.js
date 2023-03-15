@@ -15,11 +15,10 @@ import { createResource as fetchData } from './helper'
 import Spinner from './components/Spinner'
 
 function App() {
-  let [message, setMessage] = useState('Search for Music!')
   let [data, setData] = useState(null)
   let searchInput = useRef('')
 
-  const handleSearch = (e, term) => {
+  const handleSearch = async (e, term) => {
     e.preventDefault()
     document.title = `${term} Music`
     setData(fetchData(term))
@@ -29,9 +28,7 @@ function App() {
     if (data) {
       return (
         <Suspense fallback={<Spinner />}>
-          <DataContext.Provider value={data}>
-            <Gallery />
-          </DataContext.Provider>
+          <Gallery />
         </Suspense>
       )
     }
@@ -40,7 +37,7 @@ function App() {
   return (
     <div className="App">
       <h1>
-        {message}
+        Search for Music!
       </h1>
       <Router>
         <Routes>
@@ -50,9 +47,11 @@ function App() {
                 term: searchInput,
                 handleSearch: handleSearch
               }}>
-                <SearchBar handleSearch={handleSearch} />
+                <SearchBar />
               </SearchContext.Provider>
-              {renderGallery()}
+              <DataContext.Provider value={data}>
+                {renderGallery()}
+              </DataContext.Provider>
             </Fragment>
           } />
           <Route path="/album/:id" element={<AlbumView />} />
