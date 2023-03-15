@@ -23,7 +23,7 @@ function GalleryItem(props) {
                 <img src={props.item.artworkUrl100} alt={props.item.collectionName} style={{ 'borderRadius': '3px', 'margin': '0 0 10px' }} />
                 <h2 style={{ 'fontVariant': 'small-caps', 'margin': '0 0 10px' }}>{props.item.trackName}</h2>
                 <h3 style={{ 'margin': '0 0 5px' }}>
-                    <Link to={`/artist/${props.item.collectionId}`}>
+                    <Link to={`/artist/${props.item.artistId}`}>
                         {props.item.artistName}
                     </Link>
                 </h3>
