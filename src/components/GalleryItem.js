@@ -16,6 +16,32 @@ function GalleryItem(props) {
         )
     }
 
+    const artistSearch = () => {
+        if (props.item.artistId) {
+            return (
+                <Link to={`/artist/${props.item.artistId}`}>
+                    {props.item.artistName}
+                </Link>
+            )
+        } else if (props.item.collectionArtistId) {
+            return (
+                <Link to={`/artist/${props.item.artistId}`}>
+                    {props.item.artistName}
+                </Link>
+            )
+        }
+    }
+
+    const albumSearch = () => {
+        if (props.item.collectionId) {
+            return (
+                <Link to={`/album/${props.item.collectionId}`}>
+                    {props.item.collectionName}
+                </Link>
+            )
+        }
+    }
+
     const detailView = () => {
         let release = new Date(props.item.releaseDate).getFullYear()
         return (
@@ -23,14 +49,10 @@ function GalleryItem(props) {
                 <img src={props.item.artworkUrl100} alt={props.item.collectionName} style={{ 'borderRadius': '3px', 'margin': '0 0 10px' }} />
                 <h2 style={{ 'fontVariant': 'small-caps', 'margin': '0 0 10px' }}>{props.item.trackName}</h2>
                 <h3 style={{ 'margin': '0 0 5px' }}>
-                    <Link to={`/artist/${props.item.artistId}`}>
-                        {props.item.artistName}
-                    </Link>
+                    {artistSearch()}
                 </h3>
                 <h3 style={{ 'margin': '0 0 -5px' }}>
-                    <Link to={`/album/${props.item.collectionId}`}>
-                        {props.item.collectionName}
-                    </Link>
+                    {albumSearch()}
                 </h3>
                 <h4>{props.item.primaryGenreName}<br />{release}</h4>
             </div>
