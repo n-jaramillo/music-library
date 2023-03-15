@@ -15,7 +15,7 @@ function App() {
 
   const API_URL = 'https://itunes.apple.com/search?term='
 
-  const entity = '&kind=music'
+  const entity = '&media=music'
 
   const handleSearch = (e, term) => {
     e.preventDefault()
