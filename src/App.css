@@ -49,6 +49,16 @@
     1px 1px 0 #000;
 }
 
+.styledHeader {
+  color: white;
+  text-shadow:
+    3px 3px 0 #555,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
 input {
   min-width: 500px;
   height: 30px;
@@ -132,4 +142,17 @@ button {
 .detailed::-webkit-scrollbar-thumb {
   background-color: #000;
   width: 8px;
+}
+
+.App a {
+  color: #be4343;
+}
+
+.App a:visited {
+  color: #927b7b;
+}
+
+.App a:hover {
+  color: #d4a53f;
+  font-style: italic;
 }
