@@ -38,6 +38,7 @@ function AlbumView() {
     return (
         <div style={{ color: "white" }}>
             {navButtons()}
+            {albumData.length > 0 ? <h2>{albumData[0].collectionName}</h2> : <h2>loading . . .</h2>}
             {renderSongs}
         </div>
     )
