@@ -3,7 +3,7 @@ import { DataContext } from '../context/DataContext'
 import GalleryItem from './GalleryItem'
 
 function Gallery() {
-    const data = useContext(DataContext)
+    const data = useContext(DataContext).result.read()
 
     const display = data.map((item, index) => {
         return (

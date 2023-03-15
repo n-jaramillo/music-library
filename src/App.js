@@ -1,36 +1,40 @@
 import './App.css'
-import { useEffect, useState, Fragment, useRef } from 'react'
+import { useState, Fragment, useRef, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+// Components
 import Gallery from './components/Gallery'
 import SearchBar from './components/SearchBar'
-import { DataContext } from './context/DataContext'
-import { SearchContext } from './context/SearchContext'
 import AlbumView from './components/AlbumView'
 import ArtistView from './components/ArtistView'
 
+// Context and Helper Components
+import { DataContext } from './context/DataContext'
+import { SearchContext } from './context/SearchContext'
+import { createResource as fetchData } from './helper'
+import Spinner from './components/Spinner'
+
 function App() {
   let [message, setMessage] = useState('Search for Music!')
-  let [data, setData] = useState([])
+  let [data, setData] = useState(null)
   let searchInput = useRef('')
-
-  const API_URL = 'https://itunes.apple.com/search?term='
-
-  const entity = '&media=music'
 
   const handleSearch = (e, term) => {
     e.preventDefault()
-    const fetchData = async () => {
-      document.title = `${term} Music`
-      const response = await fetch(API_URL + term + entity)
-      const resData = await response.json()
-      console.log(resData)
-      if (resData.results.length > 0) {
-        setData(resData.results)
-      } else {
-        setMessage('Not Found')
-      }
+    document.title = `${term} Music`
+    setData(fetchData(term))
+  }
+
+  const renderGallery = () => {
+    if (data) {
+      return (
+        <Suspense fallback={<Spinner />}>
+          <DataContext.Provider value={data}>
+            <Gallery />
+          </DataContext.Provider>
+        </Suspense>
+      )
     }
-    fetchData()
   }
 
   return (
@@ -48,9 +52,7 @@ function App() {
               }}>
                 <SearchBar handleSearch={handleSearch} />
               </SearchContext.Provider>
-              <DataContext.Provider value={data}>
-                <Gallery />
-              </DataContext.Provider>
+              {renderGallery()}
             </Fragment>
           } />
           <Route path="/album/:id" element={<AlbumView />} />
